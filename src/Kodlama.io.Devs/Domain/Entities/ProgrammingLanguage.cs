@@ -10,7 +10,7 @@ namespace Domain.Entities
     public class ProgrammingLanguage: Entity
     {
         public string Name { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; } 
 
         public ProgrammingLanguage() { }
 

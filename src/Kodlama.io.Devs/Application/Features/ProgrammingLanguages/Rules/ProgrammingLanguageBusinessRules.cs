@@ -23,12 +23,13 @@ namespace Application.Features.ProgrammingLanguages.Rules
         public async Task ProgrammingLanguageNameCanNotBeDuplicatedWhenInserted(string name)
         {
             IPaginate<ProgrammingLanguage> result = await _programmingLanguageRepository.GetListAsync(b => b.Name == name);
-            if (result.Items.Any()) throw new BusinessException("Programlama Dili Sistemde Zaten Var..");
+            if (result.Items.Any()) throw new BusinessException("Girdiğiniz Programlama Dili Sistemde Yer Alıyor.");
         }
 
-        public void ProgrammingLanguageShouldExistWhenRequested(ProgrammingLanguage programmingLanguage)
+        public async Task ProgrammingLanguageShouldBeExist(int id)
         {
-            if (programmingLanguage == null) throw new BusinessException("Aradığınız Kriterde Bir Programlama Dili Bulunmamaktadır.");
+            var result = await _programmingLanguageRepository.GetAsync(w => w.Id == id);
+            if (result is null) throw new BusinessException($"Girdiğiniz Id ile programlama dili yoktur {id}");
         }
 
     }

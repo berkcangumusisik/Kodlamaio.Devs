@@ -12,7 +12,7 @@ namespace WebAPI.Controllers;
 [ApiController]
 public class ProgrammingLanguageController : BaseController
 {
-   [HttpPost]
+    [HttpPost]
     public async Task<IActionResult> Add([FromBody] CreateProgrammingLanguageCommand createProgrammingLanguageCommand)
     {
         CreateProgrammingLanguageDto result = await Mediator.Send(createProgrammingLanguageCommand);
@@ -31,6 +31,20 @@ public class ProgrammingLanguageController : BaseController
     {
         ProgrammingLanguageGetByIdDto programmingLanguageGetByIdDto = await Mediator.Send(getByIdProgrammingLanguageQuery);
         return Ok(programmingLanguageGetByIdDto);
+    }
+
+    [HttpPut("{Id}")]
+    public async Task<IActionResult> SoftDelete([FromRoute] DeleteProgrammingLanguageCommand deleteProgrammingLanguageCommand)
+    {
+        var result = await Mediator.Send(deleteProgrammingLanguageCommand);
+        return Ok(result);
+    }
+
+    [HttpPut("Update")]
+    public async Task<IActionResult> Update([FromBody] UpdateProgrammingLanguageCommand updateProgrammingLanguageCommand)
+    {
+        var result = await Mediator.Send(updateProgrammingLanguageCommand);
+        return Ok(result);
     }
 
 }
