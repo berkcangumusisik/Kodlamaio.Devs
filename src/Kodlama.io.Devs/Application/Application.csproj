@@ -20,4 +20,8 @@
     <PackageReference Include="MediatR.Contracts" Version="1.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Technologies\Rules\" />
+  </ItemGroup>
 </Project>
